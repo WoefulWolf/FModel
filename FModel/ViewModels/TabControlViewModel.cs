@@ -377,7 +377,7 @@ public class TabItem : ViewModel
         if (image == null)
             return;
 
-        var path = Path.Combine(UserSettings.Default.TextureDirectory, UserSettings.Default.KeepDirectoryStructure ? Entry.Directory : "", image.ExportName).Replace('\\', '/');
+        var path = Path.Combine(UserSettings.Default.TextureDirectory, UserSettings.Default.KeepDirectoryStructure ? Entry.Directory : "", Entry.NameWithoutExtension, image.ExportName).Replace('\\', '/');
 
         Directory.CreateDirectory(path.SubstringBeforeLast('/'));
 

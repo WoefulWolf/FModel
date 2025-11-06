@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Linq;
 using System.Threading;
 using CUE4Parse.FileProvider.Objects;
@@ -44,6 +44,14 @@ public class RightClickMenuCommand : ViewModelCommand<ApplicationViewModel>
                         contextViewModel.CUE4Parse.ShowMetadata(entry);
                     }
                     break;
+                case "Assets_Decompile":
+                    foreach (var entry in entries)
+                    {
+                        Thread.Yield();
+                        cancellationToken.ThrowIfCancellationRequested();
+                        contextViewModel.CUE4Parse.Decompile(entry);
+                    }
+                    break;
                 case "Assets_Export_Data":
                     foreach (var entry in entries)
                     {
@@ -82,6 +90,14 @@ public class RightClickMenuCommand : ViewModelCommand<ApplicationViewModel>
                         Thread.Yield();
                         cancellationToken.ThrowIfCancellationRequested();
                         contextViewModel.CUE4Parse.Extract(cancellationToken, entry, false, EBulkType.Animations | updateUi);
+                    }
+                    break;
+                case "Assets_Save_Audio":
+                    foreach (var entry in entries)
+                    {
+                        Thread.Yield();
+                        cancellationToken.ThrowIfCancellationRequested();
+                        contextViewModel.CUE4Parse.Extract(cancellationToken, entry, false, EBulkType.Audio | updateUi);
                     }
                     break;
             }

@@ -60,7 +60,9 @@ public enum ELoadingMode
     [Description("All (New)")]
     AllButNew,
     [Description("All (Modified)")]
-    AllButModified
+    AllButModified,
+    [Description("All (Except Patched Assets)")]
+    AllButPatched,
 }
 
 // public enum EUpdateMode
@@ -112,5 +114,6 @@ public enum EBulkType
     Textures =      1 << 2,
     Meshes =        1 << 3,
     Skeletons =     1 << 4,
-    Animations =    1 << 5
+    Animations =    1 << 5,
+    Audio =         1 << 6
 }

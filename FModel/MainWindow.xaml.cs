@@ -63,7 +63,6 @@ public partial class MainWindow
 
         await ApplicationViewModel.InitOodle();
         await ApplicationViewModel.InitZlib();
-        await ApplicationViewModel.InitDetex();
         await _applicationView.CUE4Parse.Initialize();
         await _applicationView.AesManager.InitAes();
         await _applicationView.UpdateProvider(true);
@@ -74,6 +73,7 @@ public partial class MainWindow
             _applicationView.CUE4Parse.VerifyConsoleVariables(),
             _applicationView.CUE4Parse.VerifyOnDemandArchives(),
             _applicationView.CUE4Parse.InitMappings(),
+            ApplicationViewModel.InitDetex(),
             ApplicationViewModel.InitVgmStream(),
             ApplicationViewModel.InitImGuiSettings(newOrUpdated),
             Task.Run(() =>
@@ -234,6 +234,19 @@ public partial class MainWindow
             {
                 FLogger.Text("Successfully saved animations from ", Constants.WHITE);
                 FLogger.Link(folder.PathAtThisPoint, UserSettings.Default.ModelDirectory, true);
+            });
+        }
+    }
+
+    private async void OnFolderAudioClick(object sender, RoutedEventArgs e)
+    {
+        if (AssetsFolderName.SelectedItem is TreeItem folder)
+        {
+            await _threadWorkerView.Begin(cancellationToken => { _applicationView.CUE4Parse.AudioFolder(cancellationToken, folder); });
+            FLogger.Append(ELog.Information, () =>
+            {
+                FLogger.Text("Successfully saved audio from ", Constants.WHITE);
+                FLogger.Link(folder.PathAtThisPoint, UserSettings.Default.AudioDirectory, true);
             });
         }
     }

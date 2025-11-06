@@ -47,9 +47,12 @@ public class CreatorPackage : IDisposable
             case "AthenaMapMarkerItemDefinition":
             case "AthenaBackpackItemDefinition":
             case "CosmeticShoesItemDefinition":
+            case "CosmeticCompanionItemDefinition":
+            case "CosmeticCompanionReactFXItemDefinition":
             case "AthenaPickaxeItemDefinition":
             case "AthenaGadgetItemDefinition":
             case "AthenaGliderItemDefinition":
+            case "AthenaHatItemDefinition":
             case "AthenaSprayItemDefinition":
             case "AthenaDanceItemDefinition":
             case "AthenaEmojiItemDefinition":
